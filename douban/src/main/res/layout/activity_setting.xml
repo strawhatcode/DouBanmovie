@@ -37,6 +37,7 @@
         android:background="#f2f0f0"
         android:singleLine="true"/>
     <TextView
+        android:id="@+id/as_about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="关于                                                                                       >"

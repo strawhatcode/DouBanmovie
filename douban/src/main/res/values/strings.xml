@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DouBan</string>
+    <string name="about">学习版，无优化。
+        仅尝试实现功能!</string>
 </resources>
