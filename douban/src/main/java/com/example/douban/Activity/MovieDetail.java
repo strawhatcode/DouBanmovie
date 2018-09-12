@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +33,7 @@ public class MovieDetail extends AppCompatActivity{
     public ImageView movieimg;
     public TextView title,year_country_genres,directors,rating,ratings_count,summary;
     String str;
+    private ProgressBar loading;
     @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
@@ -60,7 +62,7 @@ public class MovieDetail extends AppCompatActivity{
                     Bundle b = msg.getData();
                     str = b.getString("text");
                     movie_show();//调用show()方法显示内容
-
+                    loading.setVisibility(View.GONE);
                 }
             }
         },"moviedetail");
@@ -158,6 +160,7 @@ public class MovieDetail extends AppCompatActivity{
         ratings_count = findViewById(R.id.movie_ratnum);
         summary = findViewById(R.id.movie_summary);
         castimg = findViewById(R.id.castimg);
+        loading = findViewById(R.id.am_loading);
     }
 
     //把电影介绍内容显示在界面中

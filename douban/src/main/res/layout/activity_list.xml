@@ -71,16 +71,24 @@
                     android:textColor="#2b2b2b"
                     android:padding="10dp"
                     />
-                <com.example.douban.OverrideView.Listview_list
-                    android:id="@+id/coming"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@color/divider"
-                    android:dividerHeight="1dp"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp">
+                    <com.example.douban.OverrideView.Listview_list
+                        android:id="@+id/coming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/divider"
+                        android:dividerHeight="1dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp">
+                    </com.example.douban.OverrideView.Listview_list>
 
-                </com.example.douban.OverrideView.Listview_list>
+                    <ProgressBar
+                        android:id="@+id/al_loading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:layout_gravity="center"
+                        android:padding="30dp"
+                        />
             </LinearLayout>
     </ScrollView>
 </LinearLayout>

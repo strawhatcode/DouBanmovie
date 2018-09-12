@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class SearchActivity extends Activity {
     private ListView lv_history,searchresult;
     private RelativeLayout searchview;
     String str;
+    private ProgressBar loading;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class SearchActivity extends Activity {
         editText = findViewById(R.id.search);
         searchresult = findViewById(R.id.searchresult);
         searchview = findViewById(R.id.searchview);
+        loading = findViewById(R.id.as_loading);
 
         //创建一个mingwei名为history_database的数据库
         database = new History_database(this,"history_database",null,1);
@@ -84,7 +87,6 @@ public class SearchActivity extends Activity {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if(i == KeyEvent.KEYCODE_ENTER && keyEvent.getAction()==KeyEvent.ACTION_DOWN){
-                    Log.i("点击搜索","aaa");
 
                     //判断在数据库中是否存在要搜索的内容，如果有返回true
                     boolean exits = querydatabase(editText.getText().toString().trim());
@@ -95,7 +97,6 @@ public class SearchActivity extends Activity {
                         values.put("value",editText.getText().toString());
                         //把文本框里的内容添加到数据库中
                         database.getReadableDatabase().insert("history",null,values);
-                        Log.i("点击搜索","sss");
                     }
                     searchresult.setVisibility(View.VISIBLE);//搜索到的结果布局可见
                     searchview.setVisibility(View.GONE);//搜索记录布局隐藏
@@ -134,6 +135,7 @@ public class SearchActivity extends Activity {
                 Bundle b =msg.getData();//获取子线程的信息
                 str = b.getString("text");//把获取到的信息转化为字符串
                 searchresult.setAdapter(new Adapter_hot(SearchActivity.this,information(str)));
+                loading.setVisibility(View.GONE);
             }
         }
     };

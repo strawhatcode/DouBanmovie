@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.douban.Activity.BoxofficeActivity;
@@ -48,6 +49,8 @@ public class Fragment_list extends Fragment {
     private boolean isrunning = false;
     ArrayList<ImageView> imagelist;
     private  boolean isload = false;
+
+    private ProgressBar loading;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +64,8 @@ public class Fragment_list extends Fragment {
 
         viewPager = view.findViewById(R.id.viewpager);
         dots = view.findViewById(R.id.pager_dots);
+
+        loading = view.findViewById(R.id.al_loading);
 
         //缓存这个view,点击另外的fragment后，再点回来则不再重新加载数据
         ViewGroup group = (ViewGroup) view.getParent();
@@ -80,6 +85,7 @@ public class Fragment_list extends Fragment {
                     String str = b.getString("text");
                     arr = searchActivity.information(str);
                     coming.setAdapter(new Adapter_hot(getActivity(), arr));
+                    loading.setVisibility(View.GONE);
                 }
             }
         }, "coming");

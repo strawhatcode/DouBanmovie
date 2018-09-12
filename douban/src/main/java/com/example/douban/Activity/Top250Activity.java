@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.douban.Adapter.Adapter_top250;
@@ -32,13 +33,16 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
     private ListView t1,t2,t3,t4,t5;
     private SearchActivity searchActivity;
     private ArrayList arr1,arr2,arr3,arr4,arr5;
+    private ProgressBar loading;
     String str;
+    boolean isloading = false;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top250);
         back = findViewById(R.id.at_back);
+        loading = findViewById(R.id.at_loading);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +130,11 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                     Bundle b = msg.getData();
                     str = b.getString("text");
                     t1.setAdapter(new Adapter_top250(Top250Activity.this,top250_information(str,0)));
+                    if (isloading ==false)
+                        loading.setVisibility(View.GONE);
+                    else
+                        loading.setVisibility(View.VISIBLE);
+
                 }
             }
         },"top250");
@@ -140,6 +149,7 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
         tv3.setSelected(false);
         tv4.setSelected(false);
         tv5.setSelected(false);
+        isloading = true;
     }
 
     @Override
@@ -168,6 +178,10 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                             Bundle b = msg.getData();
                             str = b.getString("text");
                             t2.setAdapter(new Adapter_top250(Top250Activity.this,top250_information(str,50)));
+                            if (isloading ==false)
+                                loading.setVisibility(View.GONE);
+                            else
+                                loading.setVisibility(View.VISIBLE);
                         }
                     }
                 },"top250");
@@ -182,6 +196,7 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                 tv3.setSelected(false);
                 tv4.setSelected(false);
                 tv5.setSelected(false);
+                isloading = true;
                 break;
             case R.id.tv3:
                 String url3 = "http://api.douban.com/v2/movie/top250?start=101&count=150";
@@ -194,6 +209,10 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                             Bundle b = msg.getData();
                             str = b.getString("text");
                             t3.setAdapter(new Adapter_top250(Top250Activity.this,top250_information(str,100)));
+                            if (isloading ==false)
+                                loading.setVisibility(View.GONE);
+                            else
+                                loading.setVisibility(View.VISIBLE);
                         }
                     }
                 },"top250");
@@ -208,6 +227,7 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                 tv3.setSelected(true);
                 tv4.setSelected(false);
                 tv5.setSelected(false);
+                isloading = true;
                 break;
             case R.id.tv4:
                 String url4 = "http://api.douban.com/v2/movie/top250?start=151&count=200";
@@ -220,6 +240,10 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                             Bundle b = msg.getData();
                             str = b.getString("text");
                             t4.setAdapter(new Adapter_top250(Top250Activity.this,top250_information(str,150)));
+                            if (isloading ==false)
+                                loading.setVisibility(View.GONE);
+                            else
+                                loading.setVisibility(View.VISIBLE);
                         }
                     }
                 },"top250");
@@ -234,6 +258,7 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                 tv3.setSelected(false);
                 tv4.setSelected(true);
                 tv5.setSelected(false);
+                isloading = true;
                 break;
             case R.id.tv5:
                 String url5 = "http://api.douban.com/v2/movie/top250?start=201&count=250";
@@ -246,6 +271,10 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                             Bundle b = msg.getData();
                             str = b.getString("text");
                             t5.setAdapter(new Adapter_top250(Top250Activity.this,top250_information(str,200)));
+                            if (isloading ==false)
+                                loading.setVisibility(View.GONE);
+                            else
+                                loading.setVisibility(View.VISIBLE);
                         }
                     }
                 },"top250");
@@ -260,6 +289,7 @@ public class Top250Activity extends AppCompatActivity implements View.OnClickLis
                 tv3.setSelected(false);
                 tv4.setSelected(false);
                 tv5.setSelected(true);
+                isloading = true;
                 break;
         }
     }

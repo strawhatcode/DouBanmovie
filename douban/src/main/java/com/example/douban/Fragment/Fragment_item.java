@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.douban.Activity.MainActivity;
@@ -35,6 +36,7 @@ public class Fragment_item extends Fragment{
     Adapter_hot adapter_hot;
     ArrayList arrayList;
     private View view;
+    private ProgressBar loading;
 
     @Nullable
     @Override
@@ -44,6 +46,8 @@ public class Fragment_item extends Fragment{
         }
         editText = view.findViewById(R.id._search);
         lv_hot = view.findViewById(R.id.lv_hot);
+
+        loading = view.findViewById(R.id.ai_loading);
         //设置文本框不可编辑但可以点击
         editText.setCursorVisible(false);
         editText.setFocusable(false);//失去焦点
@@ -78,6 +82,7 @@ public class Fragment_item extends Fragment{
                     arrayList = searchActivity.information(str);
                     adapter_hot = new Adapter_hot(getActivity(),arrayList);
                     lv_hot.setAdapter(adapter_hot);
+                    loading.setVisibility(View.GONE);
                 }
             }
         },"hot");//实例化异步线程

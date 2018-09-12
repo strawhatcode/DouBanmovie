@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.douban.Adapter.Adapter_boxoffice;
@@ -32,6 +33,7 @@ public class BoxofficeActivity extends AppCompatActivity {
     private SearchActivity searchActivity;
     private ListView boxoffice;
     private ArrayList arr;
+    private ProgressBar loading;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class BoxofficeActivity extends AppCompatActivity {
         director = findViewById(R.id.movie_director);
         cast = findViewById(R.id.movie_cast);
         boxoffice = findViewById(R.id.boxoffice);
+        loading = findViewById(R.id.ab_loading);
 
         back = findViewById(R.id.ab_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +68,8 @@ public class BoxofficeActivity extends AppCompatActivity {
                     String str = b.getString("text");
                     arr = piaofang_information(str);
                     boxoffice.setAdapter(new Adapter_boxoffice(BoxofficeActivity.this,arr));
+                    loading.setVisibility(View.GONE);
+
                 }
             }
         },"boxoffice");

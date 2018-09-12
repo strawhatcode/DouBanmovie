@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -34,6 +35,7 @@ public class CastsDetail extends AppCompatActivity {
     private TextView cast_name_chn,cast_name_en,cast_summary;
     private HorizontalListView movieimg;
     String string;
+    private ProgressBar loading;
     @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class CastsDetail extends AppCompatActivity {
                     string = b.getString("text");
                     cast_show();
                     Log.i("sssssssssss","kaikaikai");
+                    loading.setVisibility(View.GONE);
                 }
             }
         },"castdetail");
@@ -129,6 +132,7 @@ public class CastsDetail extends AppCompatActivity {
         cast_name_en = findViewById(R.id.cast_name_en);
         cast_summary = findViewById(R.id.cast_summary);
         movieimg = findViewById(R.id.movieimg);
+        loading = findViewById(R.id.ac_loading);
     }
 
     //把内容显示在界面上的方法

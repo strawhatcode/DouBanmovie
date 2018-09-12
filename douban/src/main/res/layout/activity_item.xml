@@ -28,5 +28,14 @@
             android:divider="#a37e7c7c"
             android:dividerHeight="1dp">
         </ListView>
+        <ProgressBar
+            android:id="@+id/ai_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:padding="50dp"/>
+
+
 
 </LinearLayout>
